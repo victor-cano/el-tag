@@ -51,7 +51,7 @@
     "@typescript-eslint/parser": "^3.6.1",
     "ava": "^3.10.1",
     "browser-env": "^3.3.0",
-    "codecov": "^3.7.0",
+    "codecov": "^3.7.1",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-typescript": "^8.0.2",
     "eslint-config-prettier": "^6.11.0",
