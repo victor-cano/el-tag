@@ -1,0 +1,10 @@
+{ 
+  "rewrites": [
+    { "source": "/", "destination": "/serve/index.html" },
+    { "source": "/index.js", "destination": "/serve/index.js" },
+    {
+      "source": "eltag/:path+",
+      "destination": "/build/browser/:path"
+    }
+  ]
+}
