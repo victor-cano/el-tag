@@ -2,7 +2,9 @@
   "name": "el-tag",
   "version": "1.0.0",
   "description": "Handy utility to create DOM elements using Tagged Template Literals and retrieving references.",
-  "main": "index.js",
+  "main": "build/main/index.js",
+  "typings": "build/main/index.d.ts",
+  "module": "build/browser/index.js",
   "author": "Victor Cano",
   "license": "MIT",
   "scripts": {

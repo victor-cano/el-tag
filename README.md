@@ -2,7 +2,7 @@
 
 <p align="center">
 
-  <img src="logo-small.png" alt="El Tag Logo" width="150" />
+  <img src="logo-small.png" alt="El Tag Logo" style="max-width:100%;"/>
 </p>
 
 
@@ -32,34 +32,61 @@ Handy utility to create DOM elements using Tagged Template Literals and retrievi
 - [License](#license)
 
 ## Background
+ 
+Laziness :) / Querying for nested elements is boring. 
 
-### Any optional sections
 
 ## Install
 
-This module depends upon a knowledge of [Markdown]().
+This package doesn't have dependencies.
 
+**NPM**
+```
+$ npm install el-tag
+```
+**Yarn**
+```
+$ yarn install el-tag
 ```
 
-```
+This package exposes two module definitions:
+
+- **CommonJS**: *build/main/index.js*
+- **ES6 Module**: *build/browser/index.js*
+
 
 ### Any optional sections
 
 ## Usage
 
+```javascript
+import elTag from 'el-tag';
+
+// Create a <h1> DOM element
+let [node1] = elTag()`<h1>El Tag</h1>`;
+
+// Create a nested elements and retrieve references
+let [node2 ,node2References] = elTag()`<p>El Tag <span ref="arabic">(Arabic: التاج‎ at-Tāj; also Al-Tag, Al-Taj)</span> is a village and holy site in the Kufra Oasis, within the Libyan Desert subregion of the Sahara.</p><p>It is in the Kufra District in the southern Cyrenaica region of southeastern Libya. The Arabic el tag translates as <span ref="translation">"crown"</span> in English, and derives from the position above the Kufra basin.</p>
+<a ref="wiki" href="https://en.wikipedia.org/wiki/El_Tag">wikipedia</a>
+`;
+
+// Create nested elements using other elements
+let [node3, collection] = elTag()`<div>
+  ${node1}
+  ${node2}
+</div>`;
+
+document.body.appendChild(node3);
+
+console.log(node2References.arabic, node2References.translation, node2References.wiki);
 ```
 
-```
+## Acknowledgment 
 
-Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
+Originally I was looking for a package/library that does the same thing as ElTag, I found [Facon library](https://github.com/terkelg/facon), but after reviewing it I found some differences between the description of the library and how it really works. The usage says that Facon "Construct and returns a DOM element" and this is wrong, it actually constructs and returns a [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) which has some pros and cons.
 
-### Any optional sections
+So as an exercise, I have ported Facon to Typescript and customize it to my needs and I have also learned a little bit about of Ava, Typescript, Typedoc, Codecov, CircleCi, Npm Packages.
 
-## API
-
-### Any optional sections
-
-## More optional sections
 
 ## Contributing
 
@@ -75,22 +102,4 @@ PRs accepted.
 
 Template Library
 
-```javascript
-// Create a <b> DOM element
-let [node1] = elTag()`<b>Hello World</b>`;
 
-// Create nested elements, and extract references
-let [node2, collection] = elTag()`
-<div>
-  <h1 ref="title">El Tag</h1>
-  <p ref="body">Handy utility to create DOM elements using Tagged Template Literals and retrieving references.<p>
-
-  ${node1}
-</div>
-`;
-
-let { title, body } = collection;
-document.body.appendChild(node2);
-
-console.log(title, body);
-```
